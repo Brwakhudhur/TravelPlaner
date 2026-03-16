@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: travelplaner-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5001
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PEXELS_API_KEY
+        sync: false
+      - key: VISUAL_CROSSING_API_KEY
+        sync: false
+      - key: AMADEUS_API_KEY
+        sync: false
+      - key: AMADEUS_API_SECRET
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_DISPLAY_NAME
+        sync: false
+      - key: ADMIN2_EMAIL
+        sync: false
+      - key: ADMIN2_PASSWORD
+        sync: false
+      - key: ADMIN2_DISPLAY_NAME
+        sync: false
+      - key: AI_PROVIDER
+        value: openai
+      - key: AI_API_KEY
+        sync: false
+      - key: AI_MODEL
+        value: gpt-4o-mini
+      - key: AI_MAX_TOKENS
+        value: 4000
+      - key: AI_API_URL
+        value: https://api.openai.com/v1/chat/completions
