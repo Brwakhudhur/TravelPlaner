@@ -313,9 +313,9 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg)' }}>
       <div style={{ marginBottom: '32px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+        <div className="search-header">
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary btn-mobile-full"
             onClick={() => navigate('/search')}
             style={{ fontSize: '14px', padding: '8px 14px' }}
           >
@@ -374,6 +374,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
                     className="btn btn-outline"
                     style={{
                       textAlign: 'left',
+                      width: '100%',
                       fontSize: '13px',
                       padding: '10px 12px',
                       borderColor: 'rgba(109, 240, 194, 0.3)',
@@ -446,7 +447,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
                       setAirportOptions([]);
                     }}
                     className={selectedOrigin?.iataCode === option.iataCode ? 'btn btn-primary' : 'btn btn-outline'}
-                    style={{ textAlign: 'left', fontSize: '13px' }}
+                    style={{ textAlign: 'left', fontSize: '13px', width: '100%' }}
                   >
                     {option.iataCode} • {option.name}
                     {option.cityName ? ` — ${option.cityName}` : ''}
@@ -461,13 +462,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
             <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
               Travel Dates
             </label>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '12px',
-              }}
-            >
+            <div className="date-range-grid" style={{ gap: '12px' }}>
               <div>
                 <label style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '4px', display: 'block' }}>
                   Departure
@@ -509,7 +504,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+          <div className="grid grid-2" style={{ gap: '12px', marginBottom: '20px' }}>
             <div className="form-group" style={{ marginBottom: 0 }}>
               <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
                 Budget
@@ -734,7 +729,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px', marginBottom: '20px' }}>
+              <div className="grid grid-3" style={{ gap: '16px', marginBottom: '20px' }}>
                 <div>
                   <p style={{ margin: '0 0 4px 0', fontSize: '12px', color: 'var(--muted)' }}>Currency</p>
                   <p style={{ margin: 0, fontSize: '16px', fontWeight: '500', color: '#6df0c2' }}>
@@ -759,18 +754,14 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
             {/* City Landmarks & Points of Interest */}
             {searchResult.highlights && searchResult.highlights.length > 0 && (
               <div className="card" style={{ marginBottom: '24px' }}>
-                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                   <h3 style={{ margin: 0, color: '#6df0c2' }}>🏛️ Must-See Landmarks</h3>
                   <p style={{ margin: 0, fontSize: '13px', color: 'var(--muted)' }}>
                     {searchResult.highlights.length} places
                   </p>
                 </div>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                  gap: '16px',
-                }}>
+                <div className="grid grid-3" style={{ gap: '16px' }}>
                   {searchResult.highlights.map((highlight, idx) => {
                     // Get icon based on type
                     const getTypeIcon = (type: string) => {
@@ -906,18 +897,14 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
             {/* Events During Travel */}
             {searchResult.events && searchResult.events.length > 0 && (
               <div className="card" style={{ marginBottom: '24px' }}>
-                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                   <h3 style={{ margin: 0, color: '#6df0c2' }}>🎉 Events & Festivals</h3>
                   <p style={{ margin: 0, fontSize: '13px', color: 'var(--muted)' }}>
                     {searchResult.events.length} happening during your visit
                   </p>
                 </div>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                  gap: '14px',
-                }}>
+                <div className="grid grid-3" style={{ gap: '14px' }}>
                   {searchResult.events.map((event, idx) => {
                     // Get icon based on event type
                     const getEventIcon = (type: string) => {
@@ -1082,7 +1069,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
             {searchResult.flight && (
               <div className="card" style={{ marginBottom: '24px' }}>
                 <h3 style={{ marginBottom: '16px', color: '#6df0c2' }}>✈️ Flight Information</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+                <div className="grid grid-2" style={{ gap: '12px', marginBottom: '16px' }}>
                   <div>
                     <p style={{ margin: '0 0 4px 0', fontSize: '12px', color: 'var(--muted)' }}>Price (Round Trip)</p>
                     <p style={{ margin: 0, fontSize: '18px', fontWeight: '500', color: '#cfe0ff' }}>
@@ -1109,6 +1096,8 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
                   rel="noreferrer"
                   style={{
                     display: 'inline-block',
+                    width: '100%',
+                    textAlign: 'center',
                     padding: '10px 16px',
                     backgroundColor: 'rgba(109, 240, 194, 0.1)',
                     border: '1px solid rgba(109, 240, 194, 0.3)',
@@ -1183,7 +1172,7 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
                     <p style={{ margin: '0 0 12px 0', fontSize: '13px', color: 'var(--muted)' }}>
                       {searchResult.hotel.location}
                     </p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '13px' }}>
+                    <div className="grid grid-2" style={{ gap: '12px', fontSize: '13px' }}>
                       <div>
                         <span style={{ color: 'var(--muted)' }}>Price per night:</span>
                         <p style={{ margin: '4px 0 0 0', color: '#cfe0ff', fontWeight: '500' }}>
@@ -1342,18 +1331,14 @@ const DestinationSearch: React.FC<SearchProps> = ({ isAuthenticated }) => {
             {/* Activities & Highlights */}
             {searchResult.activities.length > 0 && (
               <div className="card" style={{ marginBottom: '24px' }}>
-                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                   <h3 style={{ margin: 0, color: '#6df0c2' }}>🎯 Top Activities & Highlights</h3>
                   <p style={{ margin: 0, fontSize: '13px', color: 'var(--muted)' }}>
                     {searchResult.activities.length} experiences
                   </p>
                 </div>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                  gap: '14px',
-                }}>
+                <div className="grid grid-3" style={{ gap: '14px' }}>
                   {searchResult.activities.map((activity, idx) => {
                     // Generate activity icons based on keywords
                     const getActivityIcon = (text: string) => {

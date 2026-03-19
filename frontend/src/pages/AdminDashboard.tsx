@@ -123,7 +123,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
 
   if (loading) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center' }}>
+      <div className="page-shell" style={{ textAlign: 'center' }}>
         <p>Loading users...</p>
       </div>
     );
@@ -131,26 +131,27 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
 
   if (error && users.length === 0) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center' }}>
+      <div className="page-shell" style={{ textAlign: 'center' }}>
         <div className="error">{error}</div>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '40px 20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+    <div className="page-shell" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="search-header" style={{ marginBottom: '32px' }}>
         <div>
           <h1 style={{ marginBottom: '8px' }}>User Management</h1>
           <p className="muted">Manage registered users and admins</p>
         </div>
-        <button className="btn btn-primary" onClick={() => setShowCreateModal(true)}>
+        <button className="btn btn-primary btn-mobile-full" onClick={() => setShowCreateModal(true)}>
           + Create User
         </button>
       </div>
 
       <div className="card">
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className="table-scroll">
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '2px solid var(--border)' }}>
               <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
@@ -198,7 +199,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
 
       {/* Create User Modal */}
@@ -266,8 +268,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
                 </select>
               </div>
 
-              <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
-                <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
+              <div className="modal-actions">
+                <button type="submit" className="btn btn-primary">
                   Create User
                 </button>
                 <button
@@ -277,7 +279,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
                     setShowCreateModal(false);
                     setFormData({ displayName: '', email: '', password: '', role: 'user' });
                   }}
-                  style={{ flex: 1 }}
                 >
                   Cancel
                 </button>
@@ -352,8 +353,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
                 </select>
               </div>
 
-              <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
-                <button type="submit" className="btn btn-primary" style={{ flex: 1 }}>
+              <div className="modal-actions">
+                <button type="submit" className="btn btn-primary">
                   Update User
                 </button>
                 <button
@@ -363,7 +364,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ isAuthenticated, userRo
                     setEditingUser(null);
                     setFormData({ displayName: '', email: '', password: '', role: 'user' });
                   }}
-                  style={{ flex: 1 }}
                 >
                   Cancel
                 </button>

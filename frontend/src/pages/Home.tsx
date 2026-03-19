@@ -4,15 +4,9 @@ import { Link } from 'react-router-dom';
 const Home: React.FC = () => {
   return (
     <div>
-      <section style={{ 
-        display: 'grid', 
-        gridTemplateColumns: '1.2fr 0.8fr', 
-        gap: '40px', 
-        alignItems: 'center',
-        padding: '40px 0'
-      }}>
+      <section className="hero-grid">
         <div className="card">
-          <h1 style={{ fontSize: '44px', lineHeight: '1.1', margin: '0 0 16px' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 8vw, 44px)', lineHeight: '1.1', margin: '0 0 16px' }}>
             Find your next <span style={{
               background: 'linear-gradient(135deg, #7aa7ff, #6df0c2)',
               WebkitBackgroundClip: 'text',
@@ -20,12 +14,12 @@ const Home: React.FC = () => {
             }}>perfect destination</span>
           </h1>
           
-          <p style={{ fontSize: '18px', color: '#d7def5', marginBottom: '24px', lineHeight: '1.6' }}>
+          <p style={{ fontSize: 'clamp(1rem, 4vw, 18px)', color: '#d7def5', marginBottom: '24px', lineHeight: '1.6' }}>
             Scoop Travel Planner helps you discover cities, beaches and nature escapes matched to your season, budget and style. 
             Save favorites, compare options and build short itineraries in minutes.
           </p>
 
-          <div style={{ display: 'flex', gap: '12px', marginBottom: '16px' }}>
+          <div className="cta-row" style={{ marginBottom: '16px' }}>
             <Link to="/register" className="btn btn-primary">
               Create your free account
             </Link>

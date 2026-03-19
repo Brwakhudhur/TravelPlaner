@@ -41,13 +41,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
   };
 
   return (
-    <div style={{ 
-      minHeight: 'calc(100vh - 200px)', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center' 
-    }}>
-      <div className="card" style={{ maxWidth: '480px', width: '100%' }}>
+    <div className="auth-wrapper">
+      <div className="card auth-card">
         <h1 style={{ marginBottom: '8px' }}>Welcome back</h1>
         <p className="muted" style={{ marginBottom: '24px' }}>
           Sign in to see your favorites and continue planning.
@@ -82,7 +77,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
           <button 
             type="submit" 
-            className="btn btn-primary" 
+            className="btn btn-primary btn-mobile-full" 
             style={{ width: '100%' }}
             disabled={loading}
           >

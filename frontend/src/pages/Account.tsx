@@ -109,14 +109,14 @@ const Account: React.FC<AccountProps> = ({ isAuthenticated, onLogout }) => {
 
   if (loading) {
     return (
-      <div style={{ padding: '40px', textAlign: 'center' }}>
+      <div className="page-shell" style={{ textAlign: 'center' }}>
         <p>Loading...</p>
       </div>
     );
   }
 
   return (
-    <div style={{ padding: '40px 20px', maxWidth: '600px', margin: '0 auto' }}>
+    <div className="page-shell" style={{ maxWidth: '600px', margin: '0 auto' }}>
       <h1 style={{ marginBottom: '8px' }}>Account Settings</h1>
       <p className="muted" style={{ marginBottom: '32px' }}>
         Update your profile information and password

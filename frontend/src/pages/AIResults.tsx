@@ -718,7 +718,7 @@ const AIResults: React.FC = () => {
         }
       `}</style>
 
-      <div style={{ padding: '32px 20px', maxWidth: '1200px', margin: '0 auto' }}>
+      <div className="page-shell" style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Header */}
         <div style={{ marginBottom: '32px' }}>
           <h1 style={{ marginBottom: '8px' }}>Your Perfect Destinations</h1>
@@ -728,14 +728,7 @@ const AIResults: React.FC = () => {
         </div>
 
         {/* Results Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: '24px',
-            marginBottom: '40px',
-          }}
-        >
+        <div className="grid grid-3" style={{ gap: '24px', marginBottom: '40px' }}>
           {currentRecommendations.map((rec, idx) => (
             <CountryCard
               key={idx}
@@ -797,7 +790,7 @@ const AIResults: React.FC = () => {
                 Close
               </button>
 
-              <div style={{ padding: '28px' }}>
+              <div style={{ padding: 'clamp(16px, 5vw, 28px)' }}>
                 <h2 style={{ marginTop: 0, marginBottom: '6px' }}>
                   {currentRecommendations[expandedCard].country}
                 </h2>
@@ -887,7 +880,7 @@ const AIResults: React.FC = () => {
                       padding: '12px',
                       marginTop: '8px',
                     }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
                         <div>
                           <p style={{ margin: '0 0 4px 0', fontSize: '13px', fontWeight: 'bold', color: '#cfe0ff' }}>
                             {hotelMap[currentRecommendations[expandedCard].country]?.name}
@@ -907,13 +900,13 @@ const AIResults: React.FC = () => {
                       </div>
 
                       <div style={{ borderTop: '1px solid rgba(109, 240, 194, 0.1)', paddingTop: '8px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '13px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '13px', gap: '8px', flexWrap: 'wrap' }}>
                           <span style={{ color: 'var(--muted)' }}>Price per night:</span>
                           <span style={{ fontWeight: 'bold', color: '#cfe0ff' }}>
                             {hotelMap[currentRecommendations[expandedCard].country]?.currency} {hotelMap[currentRecommendations[expandedCard].country]?.pricePerNight?.toFixed(2)}
                           </span>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '13px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px', fontSize: '13px', gap: '8px', flexWrap: 'wrap' }}>
                           <span style={{ color: 'var(--muted)' }}>Total:</span>
                           <span style={{ fontWeight: 'bold', color: '#6df0c2' }}>
                             {hotelMap[currentRecommendations[expandedCard].country]?.currency} {hotelMap[currentRecommendations[expandedCard].country]?.price.toFixed(2)}
@@ -929,6 +922,8 @@ const AIResults: React.FC = () => {
                             rel="noreferrer"
                             style={{
                               display: 'inline-block',
+                              width: '100%',
+                              textAlign: 'center',
                               padding: '6px 12px',
                               backgroundColor: 'rgba(109, 240, 194, 0.1)',
                               border: '1px solid rgba(109, 240, 194, 0.3)',
@@ -972,6 +967,8 @@ const AIResults: React.FC = () => {
                               justifyContent: 'space-between',
                               fontSize: '12px',
                               color: 'var(--muted)',
+                              gap: '8px',
+                              flexWrap: 'wrap',
                             }}
                           >
                             <span>{day.date}</span>
@@ -994,11 +991,11 @@ const AIResults: React.FC = () => {
         )}
 
         {/* Action Buttons */}
-        <div style={{ marginTop: '40px', textAlign: 'center', marginBottom: '32px' }}>
+        <div style={{ marginTop: '40px', marginBottom: '32px' }}>
+          <div className="cta-row" style={{ justifyContent: 'center' }}>
           <button
             className="btn btn-primary"
             onClick={initializeModifyForm}
-            style={{ marginRight: '12px' }}
           >
             🔄 Modify Search Criteria
           </button>
@@ -1008,6 +1005,7 @@ const AIResults: React.FC = () => {
           >
             ← Back to Search
           </button>
+          </div>
         </div>
 
         {/* Modify Search Form Modal */}
@@ -1040,7 +1038,7 @@ const AIResults: React.FC = () => {
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{ padding: '32px' }}>
+              <div style={{ padding: 'clamp(16px, 5vw, 32px)' }}>
                 <h2 style={{ marginBottom: '24px' }}>Modify Search Criteria</h2>
 
                 {!modifyLoading ? (
@@ -1081,12 +1079,11 @@ const AIResults: React.FC = () => {
                       </div>
                     )}
 
-                    <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+                    <div className="modal-actions">
                       <button
                         className="btn btn-secondary"
                         onClick={() => setShowModifySearch(false)}
                         disabled={modifyLoading}
-                        style={{ flex: 1 }}
                       >
                         Cancel
                       </button>

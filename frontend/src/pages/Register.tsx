@@ -53,13 +53,8 @@ const Register: React.FC<RegisterProps> = ({ onLogin }) => {
   };
 
   return (
-    <div style={{ 
-      minHeight: 'calc(100vh - 200px)', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center' 
-    }}>
-      <div className="card" style={{ maxWidth: '580px', width: '100%' }}>
+    <div className="auth-wrapper">
+      <div className="card auth-card auth-card-wide">
         <h1 style={{ marginBottom: '8px' }}>Create your free account</h1>
         <p className="muted" style={{ marginBottom: '24px' }}>
           Join Scoop to save favorites, compare destinations and build mini-itineraries.
@@ -93,7 +88,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin }) => {
             />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div className="auth-two-col">
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
@@ -123,7 +118,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin }) => {
 
           <button 
             type="submit" 
-            className="btn btn-primary" 
+            className="btn btn-primary btn-mobile-full" 
             style={{ width: '100%' }}
             disabled={loading}
           >
@@ -131,7 +126,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin }) => {
           </button>
 
           <div style={{ marginTop: '16px', textAlign: 'center' }}>
-            <Link to="/login" className="btn btn-outline">
+            <Link to="/login" className="btn btn-outline btn-mobile-full">
               I already have an account
             </Link>
           </div>

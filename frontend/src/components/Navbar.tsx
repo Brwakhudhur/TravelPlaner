@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   isAuthenticated: boolean;
@@ -9,11 +9,18 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isAuthenticated, userEmail, onLogout }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const userRole = isAuthenticated ? JSON.parse(localStorage.getItem('user') || '{}')?.role : null;
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
 
   const handleLogout = () => {
     onLogout();
     navigate('/');
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -35,8 +42,18 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated, userEmail, onLogout })
         </svg>
         <span>Scoop Travel Planner</span>
       </Link>
+
+      <button
+        type="button"
+        className="btn btn-outline nav-mobile-toggle"
+        onClick={() => setMobileMenuOpen((current) => !current)}
+        aria-expanded={mobileMenuOpen}
+        aria-label="Toggle navigation menu"
+      >
+        {mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+      </button>
       
-      <div className="nav-actions">
+      <div className={`nav-actions ${mobileMenuOpen ? '' : 'nav-collapsed'}`}>
         {isAuthenticated ? (
           <>
             {userRole === 'admin' ? (
@@ -51,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ isAuthenticated, userEmail, onLogout })
               </>
             )}
             <Link to="/account" className="btn btn-outline">Account</Link>
-            <span className="btn btn-outline" style={{opacity: 0.7}}>{userEmail}</span>
+            <span className="btn btn-outline nav-email" style={{opacity: 0.7}}>{userEmail}</span>
             <button onClick={handleLogout} className="btn btn-primary">Logout</button>
           </>
         ) : (

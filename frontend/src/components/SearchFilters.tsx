@@ -64,7 +64,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
   return (
     <div className="card" style={{ marginBottom: '24px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+      <div className="filters-header">
         <h2 style={{ margin: 0, fontSize: '24px' }}>Search Destinations</h2>
         {isModifying && (
           <span style={{
@@ -101,7 +101,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
                   type="button"
                   className={selectedOrigin?.iataCode === option.iataCode ? 'btn btn-primary' : 'btn btn-outline'}
                   onClick={() => onSelectOrigin(option)}
-                  style={{ textAlign: 'left' }}
+                  style={{ textAlign: 'left', width: '100%' }}
                 >
                   {option.iataCode} • {option.name}
                   {option.cityName ? ` — ${option.cityName}` : ''}
@@ -114,17 +114,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
 
         <div className="form-group">
           <label>Travel Dates</label>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '8px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              border: '1px solid rgba(122, 167, 255, 0.2)',
-              borderRadius: '12px',
-              padding: '10px',
-            }}
-          >
+          <div className="date-range-grid">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
               <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Depart</span>
               <input
@@ -187,6 +177,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
           {allInterests.map(interest => (
             <button
               key={interest}
+              type="button"
               onClick={() => handleInterestToggle(interest)}
               className={interests.includes(interest) ? 'btn btn-primary' : 'btn btn-outline'}
               style={{ fontSize: '14px', padding: '8px 14px' }}

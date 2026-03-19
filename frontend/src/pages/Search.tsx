@@ -185,14 +185,14 @@ const Search: React.FC<SearchProps> = ({ isAuthenticated }) => {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
+      <div className="search-header">
         <div>
           <h1 style={{ margin: 0, marginBottom: '8px' }}>Search Destinations</h1>
           <p style={{ margin: 0, fontSize: '13px', color: 'var(--muted)' }}>Get AI-powered recommendations for your trip</p>
         </div>
         <button
           onClick={() => navigate('/destination-search')}
-          className="btn btn-outline"
+          className="btn btn-outline btn-mobile-full"
           style={{
             padding: '10px 16px',
             fontSize: '14px',
@@ -203,7 +203,7 @@ const Search: React.FC<SearchProps> = ({ isAuthenticated }) => {
           🎯 Search Specific Destination
         </button>
         {showModifyOptions && (
-          <div style={{ display: 'flex', gap: '12px', width: '100%' }}>
+          <div className="search-modify-actions">
             {/* Show "Back to Results" button if user came from results */}
             <button
               onClick={handleBackToResults}
